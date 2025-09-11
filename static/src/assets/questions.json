@@ -1,0 +1,46 @@
+{
+  "title": "General Knowledge Quiz",
+  "timePerQuestion": 20,
+  "questions": [
+    {
+      "id": 1,
+      "text": "What is the capital of France?",
+      "options": [
+        { "text": "Berlin", "isCorrect": false },
+        { "text": "Madrid", "isCorrect": false },
+        { "text": "Paris", "isCorrect": true },
+        { "text": "Rome", "isCorrect": false }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Which planet is known as the Red Planet?",
+      "options": [
+        { "text": "Venus", "isCorrect": false },
+        { "text": "Mars", "isCorrect": true },
+        { "text": "Jupiter", "isCorrect": false },
+        { "text": "Saturn", "isCorrect": false }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Which language runs in a web browser?",
+      "options": [
+        { "text": "Python", "isCorrect": false },
+        { "text": "C#", "isCorrect": false },
+        { "text": "JavaScript", "isCorrect": true },
+        { "text": "Go", "isCorrect": false }
+      ]
+    },
+    {
+      "id": 4,
+      "text": "Who wrote 'Romeo and Juliet'?",
+      "options": [
+        { "text": "Charles Dickens", "isCorrect": false },
+        { "text": "Leo Tolstoy", "isCorrect": false },
+        { "text": "William Shakespeare", "isCorrect": true },
+        { "text": "Mark Twain", "isCorrect": false }
+      ]
+    }
+  ]
+}

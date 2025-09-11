@@ -1,0 +1,28 @@
+*{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+:root{--bg:#f7fbff;--card:#ffffff;--primary:#0b5cff;--accent:#06b6d4;--muted:#6b7280}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#eaf4ff);min-height:100vh;color:#0f172a}
+.container{max-width:820px;margin:32px auto;padding:20px}
+header{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+h1{margin:0;font-size:1.6rem}
+.subtitle{margin:0;color:var(--muted)}
+.quiz .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:var(--muted)}
+.question-card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+.question{margin:0 0 12px 0;font-size:1.15rem}
+.options{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.options li{display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:8px;border:1px solid #eef2ff;background:linear-gradient(180deg,#fff,#fbfdff);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+.options li:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(2,6,23,.06)}
+.options li .opt-label{font-weight:700;color:var(--primary)}
+.options li.selected{border-color:var(--accent);box-shadow:0 8px 24px rgba(6,182,212,0.08)}
+.options li.correct{background:linear-gradient(90deg,#ecfdf5,#f0fdf4);border-color:#10b981}
+.options li.wrong{background:linear-gradient(90deg,#fff1f2,#fff7f2);border-color:#ef4444}
+.controls{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+.btn{background:var(--primary);color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid #dbeafe;color:var(--primary)}
+.feedback{margin-top:12px}
+.feedback .correct{color:#059669}
+.feedback .incorrect{color:#dc2626}
+.result{background:var(--card);padding:18px;border-radius:10px;text-align:center}
+.result-actions{margin-top:14px}
+.timer{font-feature-settings:'tnum';}
+footer{margin-top:22px;color:var(--muted);text-align:center}
+@media (max-width:600px){.options{grid-template-columns:1fr}.container{padding:12px;margin:12px}}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" ng-app="quizApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angular Quiz (Static)</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- AngularJS (keeps app runnable by opening index.html without build) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Quiz App</h1>
+      <p class="subtitle">A small interactive quiz built with Angular (static-friendly AngularJS)</p>
+    </header>
+
+    <section>
+      <quiz></quiz>
+    </section>
+
+    <footer>
+      <small>Open <code>index.html</code> to run. No server required.</small>
+    </footer>
+  </main>
+
+  <!-- Preloaded templates to avoid XHR when opened via file:// -->
+  <script type="text/ng-template" id="src/app/quiz/quiz.template.html">
+    <div class="quiz">
+      <div class="meta">
+        <div>Question <strong>{{ vm.currentIndex + 1 }}</strong> / {{ vm.total }}</div>
+        <div class="timer">Time: <strong>{{ vm.timeLeft }}</strong>s</div>
+      </div>
+
+      <div class="question-card">
+        <h2 class="question">{{ vm.currentQuestion.text }}</h2>
+
+        <ul class="options">
+          <li ng-repeat="opt in vm.currentQuestion.options" ng-class="{selected: vm.selectedIndex===$index, correct: vm.showFeedback && opt.isCorrect, wrong: vm.showFeedback && vm.selectedIndex===$index && !opt.isCorrect}" ng-click="vm.select($index)" tabindex="0" role="button" aria-pressed="false">
+            <span class="opt-label">{{ 'ABCD'[ $index ] }}.</span>
+            <span class="opt-text">{{ opt.text }}</span>
+          </li>
+        </ul>
+
+        <div class="feedback" ng-if="vm.showFeedback">
+          <div ng-if="vm.lastAnswerCorrect" class="correct">Correct! ✅</div>
+          <div ng-if="!vm.lastAnswerCorrect" class="incorrect">Incorrect ✖ — Correct: <strong>{{ vm.correctAnswerText }}</strong></div>
+        </div>
+
+        <div class="controls">
+          <button ng-click="vm.skip()" class="btn ghost">Skip</button>
+          <button ng-click="vm.next()" class="btn" ng-disabled="!vm.showFeedback">Next</button>
+        </div>
+      </div>
+
+      <result ng-if="vm.finished" stats="vm.stats" on-reset="vm.reset()"></result>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="src/app/result/result.template.html">
+    <div class="result">
+      <h2>Quiz Summary</h2>
+      <p>Questions: <strong>{{ $ctrl.stats.total }}</strong></p>
+      <p>Correct: <strong>{{ $ctrl.stats.correct }}</strong></p>
+      <p>Score: <strong>{{ $ctrl.stats.percentage }}%</strong></p>
+
+      <div class="result-actions">
+        <button class="btn" ng-click="$ctrl.onReset()">Retake Quiz</button>
+      </div>
+    </div>
+  </script>
+
+  <!-- App scripts (order matters) -->
+  <!-- Embedded questions data so the static file:// demo doesn't need XHR -->
+  <script>
+    window.__questionsData = {
+      "title": "General Knowledge Quiz",
+      "timePerQuestion": 20,
+      "questions": [
+        {
+          "id": 1,
+          "text": "What is the capital of France?",
+          "options": [
+            { "text": "Berlin", "isCorrect": false },
+            { "text": "Madrid", "isCorrect": false },
+            { "text": "Paris", "isCorrect": true },
+            { "text": "Rome", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Which planet is known as the Red Planet?",
+          "options": [
+            { "text": "Venus", "isCorrect": false },
+            { "text": "Mars", "isCorrect": true },
+            { "text": "Jupiter", "isCorrect": false },
+            { "text": "Saturn", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 3,
+          "text": "Which language runs in a web browser?",
+          "options": [
+            { "text": "Python", "isCorrect": false },
+            { "text": "C#", "isCorrect": false },
+            { "text": "JavaScript", "isCorrect": true },
+            { "text": "Go", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 4,
+          "text": "Who wrote 'Romeo and Juliet'?",
+          "options": [
+            { "text": "Charles Dickens", "isCorrect": false },
+            { "text": "Leo Tolstoy", "isCorrect": false },
+            { "text": "William Shakespeare", "isCorrect": true },
+            { "text": "Mark Twain", "isCorrect": false }
+          ]
+        }
+      ]
+    };
+  </script>
+  <script src="src/app/questions-loader.js"></script>
+  <script src="src/app/app.module.js"></script>
+  <script src="src/app/question.service.js"></script>
+  <script src="src/app/quiz/quiz.component.js"></script>
+  <script src="src/app/result/result.component.js"></script>
+</body>
+</html>
