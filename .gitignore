@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+yarn.lock
+
+# Angular / build
+dist/
+.ng_build/
+coverage/
+ng-app/.angular/
+ng-app/.angular/cache/
+ng-app/dist/
+
+# IDE cache
+.angular/
+
+# OS
+.DS_Store
+
+# Env
+.env
+
+# IDEs
+.vscode/
+.idea/
