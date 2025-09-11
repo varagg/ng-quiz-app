@@ -57,13 +57,13 @@ The quiz is split into three intuitive phases that map to the user flow:
 - How to run:
 
 ```open in default browser (macOS)
-open 'static/index.html'
+open 'static/index.html'```
 
 or serve with a simple local server (recommended for same-origin fetches):
 
 ```Python 3 built-in HTTP server
 'cd static'
-'python3 -m http.server 8000'
+'python3 -m http.server 8000'```
 then open http://localhost:8000
 
 Notes:
@@ -76,17 +76,19 @@ Notes:
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
 - How to run (development):
 
-'cd ng-app'
-'npm install'
-'npm start'
+```terminal
+cd ng-app
+npm install
+npm start```
 
 This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
 
 - How to build (production):
 
-'cd ng-app'
-'npm install'
-'npm run build ----prod'
+```terminal
+cd ng-app
+npm install
+npm run build ----prod```
 
 The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
 
@@ -96,25 +98,29 @@ The compiled output will be under `ng-app/dist/` (or as configured in `angular.j
 - Prerequisites: Node.js (>=14 recommended), npm.
 - How to run locally:
 
-`cd server`
-`npm install`
+```terminal
+cd server
+npm install```
 
 if the project defines a start script, use it; otherwise run node index.js
-'npm start' || 'node index.js'
+```npm start || node index.js```
 
 Check `server/package.json` or `server/index.js` for the configured port (commonly 3000). If needed, set an env variable:
 
-'export PORT=3000'
-'npm start'
+```terminal
+export PORT=3000
+npm start```
 
 - How to expose remotely (ngrok):
 
 start the server first
-`export PORT=3000`
-`npm start`
+
+```terminal
+export PORT=3000
+npm start```
 
 in a separate terminal
-`ngrok http 3000`
+```ngrok http 3000```
 
 ngrok will provide a public URL that forwards to your local server.
 
