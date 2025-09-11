@@ -56,12 +56,12 @@ The quiz is split into three intuitive phases that map to the user flow:
 - What it is: a client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.
 - How to run:
 
-- open in default browser (macOS)
+```open in default browser (macOS)
 open 'static/index.html'
 
 or serve with a simple local server (recommended for same-origin fetches):
 
-- Python 3 built-in HTTP server
+```Python 3 built-in HTTP server
 'cd static'
 'python3 -m http.server 8000'
 then open http://localhost:8000
@@ -96,8 +96,8 @@ The compiled output will be under `ng-app/dist/` (or as configured in `angular.j
 - Prerequisites: Node.js (>=14 recommended), npm.
 - How to run locally:
 
-'cd server'
-'npm install'
+`cd server`
+`npm install`
 
 if the project defines a start script, use it; otherwise run node index.js
 'npm start' || 'node index.js'
