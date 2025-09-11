@@ -56,19 +56,19 @@ The quiz is split into three intuitive phases that map to the user flow:
 - What it is: a client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.
 - How to run:
 
-    ### open in default browser (macOS)
-    open static/index.html
+### open in default browser (macOS)
+open static/index.html
 
-  or serve with a simple local server (recommended for same-origin fetches):
+or serve with a simple local server (recommended for same-origin fetches):
 
-    ### Python 3 built-in HTTP server
-    cd static
-    python3 -m http.server 8000
-    ### then open http://localhost:8000
+### Python 3 built-in HTTP server
+cd static
+python3 -m http.server 8000
+then open http://localhost:8000
 
-  Notes:
-  - No Node or build step required.
-  - Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
+Notes:
+- No Node or build step required.
+- Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
 
 2) ng-app/ (development - Angular source)
 
@@ -76,19 +76,19 @@ The quiz is split into three intuitive phases that map to the user flow:
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
 - How to run (development):
 
-    cd ng-app
-    npm install
-    npm start
+cd ng-app
+npm install
+npm start
 
-  This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
+This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
 
 - How to build (production):
 
-    cd ng-app
-    npm install
-    npm run build -- --prod
+cd ng-app
+npm install
+npm run build -- --prod
 
-  The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
+The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
 
 3) server/ (hostable / upgraded version)
 
@@ -96,26 +96,27 @@ The quiz is split into three intuitive phases that map to the user flow:
 - Prerequisites: Node.js (>=14 recommended), npm.
 - How to run locally:
 
-    cd server
-    npm install
-    ### if the project defines a start script, use it; otherwise run node index.js
-    npm start || node index.js
+cd server
+npm install
 
-  Check `server/package.json` or `server/index.js` for the configured port (commonly 3000). If needed, set an env variable:
+### if the project defines a start script, use it; otherwise run node index.js
+npm start || node index.js
 
-    export PORT=3000
-    npm start
+Check `server/package.json` or `server/index.js` for the configured port (commonly 3000). If needed, set an env variable:
+
+export PORT=3000
+npm start
 
 - How to expose remotely (ngrok):
 
-    ### start the server first
-    export PORT=3000
-    npm start
+### start the server first
+export PORT=3000
+npm start
 
-    ### in a separate terminal
-    ngrok http 3000
+### in a separate terminal
+ngrok http 3000
 
-  ngrok will provide a public URL that forwards to your local server.
+ngrok will provide a public URL that forwards to your local server.
 
 ---
 
