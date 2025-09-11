@@ -53,10 +53,9 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 1) `static/` (quickest - no install)
 
-**What it is:**  
-A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
+- What it is: A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
 
-**Run locally:**  
+**How to run locally:**  
 
 ```zsh
 # macOS: open in default browser
