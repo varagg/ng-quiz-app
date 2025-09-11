@@ -58,15 +58,15 @@ A client-only implementation using plain HTML, CSS and JavaScript. Good for quic
 
 **Run locally:**  
 
-```bash
+```zsh
 # macOS: open in default browser
 open static/index.html
 ```
 
 or serve with a simple local server (recommended for same-origin fetches):
 
-Python 3 built-in HTTP server
 ```zsh
+# Python 3 built-in HTTP server
 cd static
 python3 -m http.server 8000
 ```
@@ -80,7 +80,8 @@ Notes:
 
 - What it is: the Angular source code and configuration. Use this for development or to build a production bundle.
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
-- How to run (development):
+
+**How to run (development):**
 
 ```zsh
 cd ng-app
@@ -90,7 +91,7 @@ npm start
 
 This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
 
-- How to build (production):
+**How to build (production):**
 
 ```zsh
 cd ng-app
@@ -104,7 +105,8 @@ The compiled output will be under `ng-app/dist/` (or as configured in `angular.j
 
 - What it is: the hostable Node.js server that can serve the app and provide server-side features like a leaderboard. This is the recommended folder to run when exposing the app (for example via ngrok).
 - Prerequisites: Node.js (>=14 recommended), npm.
-- How to run locally:
+
+**How to run locally:**
 
 ```zsh
 cd server
@@ -112,6 +114,7 @@ npm install
 ```
 
 if the project defines a start script, use it; otherwise run node index.js
+
 ```zsh
 npm start || node index.js
 ```
@@ -123,16 +126,16 @@ export PORT=3000
 npm start
 ```
 
-- How to expose remotely (ngrok):
-
-start the server first
+**How to expose remotely (ngrok):**
 
 ```zsh
+# start the server first
 export PORT=3000
 npm start
 ```
 
 in a separate terminal
+
 ```zsh
 ngrok http 3000
 ```
