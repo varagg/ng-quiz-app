@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz Admin - Remote Submissions</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial;margin:18px;background:#f7fbff;color:#04203a}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;border:1px solid #e6eef8;text-align:left}
+    .actions{display:flex;gap:8px;justify-content:flex-end}
+    .muted{color:#6b7280}
+    .btn{padding:6px 10px;border-radius:6px;background:#0b5cff;color:#fff;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;color:#0b5cff;border:1px solid rgba(11,92,255,0.12)}
+  </style>
+</head>
+<body>
+  <h2>Remote leaderboard (admin view)</h2>
+  <div class="actions">
+    <button class="btn" id="refresh">Refresh</button>
+    <button class="btn ghost" id="export">Export CSV</button>
+    <button class="btn ghost" id="clear">Clear Remote</button>
+    <label style="margin-left:12px;display:flex;align-items:center;gap:8px;font-size:13px;color:#234">
+      <input type="checkbox" id="auto" /> Auto-refresh
+    </label>
+  </div>
+  <div id="status" style="margin-top:8px" class="muted">Showing entries that arrived via remote tunnels.</div>
+  <table id="tbl"><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Correct</th><th>Total</th><th>Time</th><th>Via</th><th>IP</th></tr></thead><tbody></tbody></table>
+  <h3 style="margin-top:18px">Live submissions</h3>
+  <div id="live" style="border:1px dashed #e6eef8;padding:8px;max-height:220px;overflow:auto;background:#fff"></div>
+  <script>
+    const base = (location.origin);
+    async function load(){
+      setStatus('loading...');
+      try{
+        const r = await fetch(base + '/api/leaderboard?remoteOnly=1');
+        const d = await r.json();
+        render(d || []);
+        setStatus('Loaded ' + (d?d.length:0) + ' entries');
+      }catch(e){ setStatus('Failed to load: '+e.message); }
+    }
+    function setStatus(s){ document.getElementById('status').textContent = s; }
+    function render(data){
+      const body = document.querySelector('#tbl tbody'); body.innerHTML = '';
+      data.forEach((p,idx)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + (idx+1) + '</td><td>' + escapeHtml(p.name) + '</td><td>' + p.percentage + '%</td><td>' + p.correct + '</td><td>' + p.total + '</td><td>' + (new Date(p.time).toLocaleString()) + '</td><td>' + (p.via||'') + '</td><td>' + escapeHtml(p.ip||'') + '</td>';
+        body.appendChild(tr);
+      });
+    }
+    function escapeHtml(s){ return String(s||'').replace(/[&<>\"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c]); }
+  document.getElementById('refresh').addEventListener('click', ()=>load());
+    document.getElementById('export').addEventListener('click', ()=>{
+      fetch(base + '/api/leaderboard?remoteOnly=1').then(r=>r.json()).then(data=>{
+  const rows = [['rank','name','percentage','correct','total','time','via','ip']];
+        data.forEach((p,idx)=>rows.push([String(idx+1), p.name, String(p.percentage), String(p.correct), String(p.total), new Date(p.time).toISOString(), p.via||'', p.ip||'']));
+        var csv = rows.map(function(r){ return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+        var blob = new Blob([csv], { type: 'text/csv' }); var url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'remote-leaderboard.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      });
+    });
+    document.getElementById('clear').addEventListener('click', ()=>{
+      if(!confirm('Clear remote-only entries? This cannot be undone.')) return;
+      fetch(base + '/api/clear-remote', { method: 'POST' }).then(r=>r.json()).then(j=>{ alert('Removed '+(j.removed||0)+' entries'); load(); }).catch(e=>alert('Failed: '+e.message));
+    });
+    load();
+
+    // Auto-refresh support
+    let interval = null;
+    const checkbox = document.getElementById('auto');
+    checkbox.addEventListener('change', ()=>{
+      if(checkbox.checked){
+        interval = setInterval(load, 5000);
+      }else{
+        if(interval){ clearInterval(interval); interval = null; }
+      }
+    });
+
+    // SSE live stream
+    if(window.EventSource){
+      try{
+        const es = new EventSource(base + '/api/stream');
+        es.onmessage = function(ev){
+          try{
+            const obj = JSON.parse(ev.data);
+            const d = document.createElement('div');
+            d.style.padding='6px 0';
+            d.style.borderBottom='1px solid #f1f8ff';
+            d.textContent = new Date(obj.time).toLocaleTimeString() + ' — ' + (obj.name||'') + ' ' + (obj.percentage||'') + '% (' + (obj.ip||'') + ')';
+            const live = document.getElementById('live');
+            live.insertBefore(d, live.firstChild);
+          }catch(e){ console.error(e); }
+        };
+      }catch(e){ console.warn('EventSource failed', e); }
+    }
+  </script>
+</body>
+</html>

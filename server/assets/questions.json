@@ -1,0 +1,10 @@
+{
+  "title": "General Knowledge Challenge",
+  "timePerQuestion": 15,
+  "questions": [
+    {"id":1,"text":"What is the capital of Japan?","options":[{"text":"Seoul","isCorrect":false},{"text":"Tokyo","isCorrect":true},{"text":"Beijing","isCorrect":false},{"text":"Bangkok","isCorrect":false}]},
+    {"id":2,"text":"Which element has chemical symbol 'O'?","options":[{"text":"Gold","isCorrect":false},{"text":"Oxygen","isCorrect":true},{"text":"Silver","isCorrect":false},{"text":"Lead","isCorrect":false}]},
+    {"id":3,"text":"What year did the Apollo 11 land on the moon?","options":[{"text":"1969","isCorrect":true},{"text":"1972","isCorrect":false},{"text":"1959","isCorrect":false},{"text":"1965","isCorrect":false}]},
+    {"id":4,"text":"Who painted the Mona Lisa?","options":[{"text":"Vincent van Gogh","isCorrect":false},{"text":"Claude Monet","isCorrect":false},{"text":"Leonardo da Vinci","isCorrect":true},{"text":"Pablo Picasso","isCorrect":false}]}
+  ]
+}
