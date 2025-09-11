@@ -2,9 +2,9 @@
 
 A lightweight quiz application built with Angular for the frontend and a minimal Node server for hosting APIs and static assets. This repository contains three pieces:
 
-- `static/` — Prebuilt static bundle and a ready-to-serve demo
-- `ng-app/` — Angular 15 app (source, tests, build)
-- `server/` — Simple Node/Express server used for running the app and an optional leaderboard API
+- `static/` — Prebuilt static bundle and a ready-to-serve demo  
+- `ng-app/` — Angular 15 app (source, tests, build)  
+- `server/` — Simple Node/Express server used for running the app and an optional leaderboard API  
 
 ---
 
@@ -12,12 +12,12 @@ A lightweight quiz application built with Angular for the frontend and a minimal
 
 ng-quiz-app is a small, opinionated quiz/demo that showcases:
 
-- Angular single-page application structure
-- Unit tests using Karma + Jasmine
-- CI automation with GitHub Actions (build & test)
-- Simple Node server for hosting and demoing features
+- Angular single-page application structure  
+- Unit tests using Karma + Jasmine  
+- CI automation with GitHub Actions (build & test)  
+- Simple Node server for hosting and demoing features  
 
-It's a good starter project to demonstrate Angular skills to reviewers and to extend with additional features (auth, persistence, scoring rules, analytics).
+It's a good starter project to demonstrate Angular skills to reviewers and to extend with additional features (auth, persistence, scoring rules, analytics).  
 
 ---
 
@@ -25,39 +25,43 @@ It's a good starter project to demonstrate Angular skills to reviewers and to ex
 
 The quiz is split into three intuitive phases that map to the user flow:
 
-1) Preparation (Start)
-- User lands on the quiz page, reads instructions, and starts the quiz.
-- The app may load question data from `assets/questions.json` or from the server API.
+1. **Preparation (Start)**  
+   - User lands on the quiz page, reads instructions, and starts the quiz.  
+   - The app may load question data from `assets/questions.json` or from the server API.  
 
-2) Question loop (Play)
-- The user answers multiple-choice questions one at a time.
-- The UI provides immediate feedback (optional sound), progress, and a timer if enabled.
-- The app tracks answers for scoring.
+2. **Question loop (Play)**  
+   - The user answers multiple-choice questions one at a time.  
+   - The UI provides immediate feedback (optional sound), progress, and a timer if enabled.  
+   - The app tracks answers for scoring.  
 
-3) Result and visualization (Finish)
-- After the last question the app shows a result summary: score, correct/incorrect breakdown, and visualizations.
-- Optionally posts the score to a leaderboard API (server) and displays rankings.
+3. **Result and visualization (Finish)**  
+   - After the last question the app shows a result summary: score, correct/incorrect breakdown, and visualizations.  
+   - Optionally posts the score to a leaderboard API (server) and displays rankings.  
 
 ---
 
 ## Use cases
 
-- Educational demos and coding interviews
-- Lightweight quiz/gamified experiences for small teams or classrooms
-- Starter template for Angular beginners to learn testing and CI
-- Showcasing a full-stack (frontend + simple backend) example in a portfolio
+- Educational demos and coding interviews  
+- Lightweight quiz/gamified experiences for small teams or classrooms  
+- Starter template for Angular beginners to learn testing and CI  
+- Showcasing a full-stack (frontend + simple backend) example in a portfolio  
 
 ---
 
-## How to run (static/ng-app/server)
+## How to run (static / ng-app / server)
 
-1) static/ (quickest - no install)
+### 1) `static/` (quickest - no install)
 
-- What it is: a client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.
-- How to run:
+**What it is:**  
+A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
 
-```open in default browser (macOS)
-open 'static/index.html'```
+**Run locally:**  
+
+```bash
+# macOS: open in default browser
+open static/index.html
+
 
 or serve with a simple local server (recommended for same-origin fetches):
 
