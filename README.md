@@ -75,6 +75,8 @@ then open http://localhost:8000
 - No Node or build step required.
 - Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
 
+...
+
 2) **`ng-app/` (development - Angular source)**
 
 - What it is: the Angular source code and configuration. Use this for development or to build a production bundle.
@@ -99,6 +101,8 @@ npm run build ----prod
 ```
 
 The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
+
+...
 
 3) **`server/` (hostable / upgraded version)**
 
