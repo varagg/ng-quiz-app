@@ -51,7 +51,7 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 ## How to run (static / ng-app / server)
 
-### 1) `static/` (quickest - no install)
+1) `static/` (quickest - no install)
 
 **What it is:**  
 A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
@@ -61,70 +61,81 @@ A client-only implementation using plain HTML, CSS and JavaScript. Good for quic
 ```bash
 # macOS: open in default browser
 open static/index.html
-
+```
 
 or serve with a simple local server (recommended for same-origin fetches):
 
-```Python 3 built-in HTTP server
-'cd static'
-'python3 -m http.server 8000'```
+Python 3 built-in HTTP server
+```zsh
+cd static
+python3 -m http.server 8000
+```
 then open http://localhost:8000
 
 Notes:
 - No Node or build step required.
 - Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
 
-2) ng-app/ (development - Angular source)
+2) `ng-app/` (development - Angular source)
 
 - What it is: the Angular source code and configuration. Use this for development or to build a production bundle.
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
 - How to run (development):
 
-```terminal
+```zsh
 cd ng-app
 npm install
-npm start```
+npm start
+```
 
 This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
 
 - How to build (production):
 
-```terminal
+```zsh
 cd ng-app
 npm install
-npm run build ----prod```
+npm run build ----prod
+```
 
 The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
 
-3) server/ (hostable / upgraded version)
+3) `server/` (hostable / upgraded version)
 
 - What it is: the hostable Node.js server that can serve the app and provide server-side features like a leaderboard. This is the recommended folder to run when exposing the app (for example via ngrok).
 - Prerequisites: Node.js (>=14 recommended), npm.
 - How to run locally:
 
-```terminal
+```zsh
 cd server
-npm install```
+npm install
+```
 
 if the project defines a start script, use it; otherwise run node index.js
-```npm start || node index.js```
+```zsh
+npm start || node index.js
+```
 
 Check `server/package.json` or `server/index.js` for the configured port (commonly 3000). If needed, set an env variable:
 
-```terminal
+```zsh
 export PORT=3000
-npm start```
+npm start
+```
 
 - How to expose remotely (ngrok):
 
 start the server first
 
-```terminal
+```zsh
 export PORT=3000
-npm start```
+npm start
+```
 
 in a separate terminal
-```ngrok http 3000```
+```zsh
+ngrok http 3000
+```
 
 ngrok will provide a public URL that forwards to your local server.
 
