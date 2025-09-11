@@ -1,0 +1,386 @@
+/* Global styles for Angular app */
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);margin:0;min-height:100vh}
+
+/* Smooth transitions for theme changes */
+body, .card, .opts li, .app-header h1, .result-root, .btn{
+	transition: background-color .36s ease, color .36s ease, border-color .36s ease, box-shadow .36s ease;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce){
+	*{transition:none!important;animation:none!important}
+}
+
+/* Page-level load fade to reduce flash on navigation */
+html:not(.loaded) body{opacity:0;transform:translateY(6px)}
+html.loaded body{opacity:1;transform:none;transition:opacity .36s ease,transform .36s ease}
+@media (prefers-reduced-motion: reduce){
+	html.loaded body{transition:none!important}
+}
+/* Progress bar */
+.progress{height:8px;background:#e6eef8;border-radius:6px;overflow:hidden;margin:10px 0}
+.progress > i{display:block;height:100%;background:linear-gradient(90deg,#06b6d4,#0b5cff);width:0}
+.btn{background:#0b5cff;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid #dbeafe;color:var(--primary)}
+
+/* Accessibility helpers */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* Option styles */
+.opts{list-style:none;padding:0;margin:8px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opts li{background:#fff;padding:10px 8px;border-radius:8px;border:1px solid #e6eef8;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,background-color .2s ease,border-color .2s ease;font-size:13px}
+.opts li:focus{outline:3px solid rgba(11,92,255,0.12)}
+.opts li.selected{transform:translateY(-2px);box-shadow:0 10px 20px rgba(11,92,255,0.10);border-color:#9fd6ff;background:linear-gradient(180deg,rgba(6,182,212,0.06),rgba(11,92,255,0.03));}
+.opts li.correct{background:linear-gradient(90deg,#ecfdf5,#d1fae5);border-color:#10b981;color:var(--card);}
+.opts li.wrong{background:linear-gradient(90deg,#fee2e2,#fff1f2);border-color:#ef4444;color:var(--card);}
+.opts li.correct .opt-prefix, .opts li.correct .opt-text{color:#065f46;font-weight:700}
+.opts li.wrong .opt-prefix, .opts li.wrong .opt-text{color:#991b1b;font-weight:700}
+.opt-prefix{font-weight:700;color:#0b5cff;margin-right:8px}
+
+/* Card and controls */
+.card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.06)}
+.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+
+/* Feedback animations */
+.feedback{margin-top:12px;font-weight:600}
+.correct{color:#059669;animation:pop .28s ease}
+.incorrect{color:#dc2626}
+@keyframes pop{0%{transform:scale(.94);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* Smooth progress bar animation */
+.progress > i{transition:width .45s cubic-bezier(.2,.9,.2,1)}
+
+/* Card enter animation */
+.card.fade-in{animation:cardIn .32s ease both}
+@keyframes cardIn{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* Focus visual for primary buttons */
+.btn:focus{outline:3px solid rgba(11,92,255,0.12);box-shadow:0 6px 20px rgba(11,92,255,0.06)}
+
+/* Theme variables and refined layout */
+:root{
+	--bg: #f7fbff;
+	--card: #ffffff;
+	--muted: #6b7280;
+	--primary: #0b5cff;
+	--accent: #06b6d4;
+	--success: #10b981;
+	--danger: #ef4444;
+	--glass: rgba(255,255,255,0.6);
+}
+
+html, body { height: 100%; }
+body{color:#0b1220}
+/* reduce base font-size to make the whole page feel smaller */
+body{font-size:14px}
+
+/* Dark mode */
+.dark{--bg:#081025;--card:#0b1220;color:#e6eef8}
+.dark .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+.dark .opts li{background:#071025;border-color:rgba(255,255,255,0.02);color:#e6eef8}
+.dark .app-header h1{color:var(--accent)}
+
+/* App header and layout refinements */
+.app{max-width:680px;margin:12px auto 0;padding:0 12px;display:flex;flex-direction:column;min-height:100vh}
+
+/* Center the main content (welcome -> leaderboard) vertically and horizontally */
+.quiz-root{display:flex;align-items:center;justify-content:center;min-height:60vh}
+/* allow main content to grow so footer stays at page bottom */
+.app > main{flex:1}
+.quiz-root > .intro{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.quiz-root > .intro .hint{margin-top:8px}
+
+.intro h2, .intro p{margin:0}
+.quiz-root > .intro, .quiz-root > .play, .quiz-root > .result-root{width:100%;max-width:680px}
+
+/* Semi-transparent card with subtle gradient border that blends with background */
+.card, .result-root{background:linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.7));border-radius:12px;padding:12px 14px;box-shadow:0 12px 28px rgba(2,6,23,0.06);border:1px solid transparent;position:relative;font-size:14px}
+.card:before, .result-root:before{
+	content:'';position:absolute;inset:-2px;border-radius:14px;pointer-events:none;
+	background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(11,92,255,0.12), rgba(16,185,129,0.08));mix-blend-mode:screen;opacity:0.9;z-index:-1
+}
+
+/* Confetti overlay fixed to top of viewport so it doesn't force page scroll */
+.confetti-canvas{position:fixed;left:0;right:0;top:0;height:160px;pointer-events:none;z-index:10000}
+.confetti-svg{position:fixed;left:0;right:0;top:0;height:160px;pointer-events:none;z-index:9999}
+.app-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.88), rgba(6,182,212,0.06));backdrop-filter:blur(6px);box-shadow:0 8px 26px rgba(6,40,90,0.06);border:1px solid rgba(11,92,255,0.06)}
+
+/* Sticky header: remain visible while page content scrolls */
+.app-header{position:-webkit-sticky;position:sticky;top:12px;z-index:999}
+.app-header h1{font-size:1rem;margin:0;color:var(--primary)}
+.theme-toggle{font-size:0.78rem;color:var(--muted)}
+/* shrink cloud/moon/audio icons and toggle (more compact) */
+.theme-toggle .icon{font-size:0.78rem;opacity:.85}
+.theme-toggle .icon.cloud{transform:translateX(-3px);font-size:0.82rem}
+.theme-toggle .icon.moon{transform:translateX(3px);font-size:0.82rem}
+.mute-btn{font-size:0.85rem;padding:4px;border-radius:6px;margin-left:6px}
+/* smaller switch */
+.switch{width:40px;height:20px}
+.slider{border-radius:28px}
+.slider:before{height:14px;width:14px;left:3px;top:3px}
+.switch input:checked + .slider:before{transform:translateX(18px)}
+
+/* brand stacking: main title with subtle abbreviation subtitle */
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand h1{line-height:1.05;margin:0;font-size:1.05rem}
+
+/* Result and leaderboard */
+.result-root{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 18px 40px rgba(2,6,23,0.06);max-width:760px;margin:14px auto}
+.result-root h2{margin-top:0}
+.leaderboard{margin-top:18px}
+.leaderboard h4{margin:0 0 8px 0}
+.lb-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.lb-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(11,92,255,0.03),transparent);border:1px solid rgba(11,92,255,0.04)}
+.lb-rank{width:36px;height:36px;border-radius:50%;display:inline-grid;place-items:center;background:linear-gradient(90deg,var(--accent),var(--primary));color:#fff;font-weight:700}
+.lb-name{font-weight:600}
+.lb-score{margin-left:auto;font-weight:700;color:var(--primary)}
+.trophy{font-size:1.2rem;margin-right:6px}
+.lb-item.me{background:linear-gradient(90deg,rgba(11,92,255,0.08),rgba(6,182,212,0.04));border-color:rgba(11,92,255,0.12)}
+
+/* confetti canvas */
+.confetti-canvas{width:100%;height:120px;display:block}
+
+/* cloud icon slightly adjusted */
+.theme-toggle .icon.cloud{transform:translateX(-6px)}
+
+/* mute button */
+.mute-btn{border:0;background:transparent;padding:6px;border-radius:6px;margin-left:8px;cursor:pointer}
+.mute-btn:hover{background:rgba(0,0,0,0.04)}
+.mute-btn:focus{outline:2px solid var(--accent);outline-offset:2px}
+
+/* start button evasive behavior hint */
+.intro .hint{font-size:12px;color:var(--muted);margin-top:8px}
+.intro .btn{transition:transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 140ms ease;will-change:transform}
+
+/* start button and input alignment: make start button match input height */
+.start-wrap{display:inline-flex;align-items:center;gap:8px}
+input#playerNameInput{display:block;padding:6px 10px;border-radius:8px;border:1px solid rgba(11,92,255,0.06);font-size:13px;margin-top:8px;height:30px;box-sizing:border-box}
+.start-btn{padding:0 8px;height:30px;min-height:30px;display:inline-flex;align-items:center;border-radius:8px;margin-top:8px;font-size:13px;line-height:1;color:#fff}
+/* fallback: if narrow, stack input and button */
+@media (max-width:520px){
+	.start-wrap{display:flex;flex-direction:column;gap:8px;margin-left:0}
+	.start-btn{height:auto}
+}
+
+.dodge-emoji{position:absolute;right:-28px;top:-12px;font-size:20px;pointer-events:none;transform:translateZ(0);}
+.intro .btn[disabled]{opacity:0.6}
+
+/* playful pop/bounce for dodge emoji */
+.dodge-emoji{
+	animation: pop-bounce 520ms cubic-bezier(.2,.9,.3,1);
+	transform-origin: center center;
+	will-change: transform, opacity;
+}
+
+@keyframes pop-bounce{
+	0% { transform: scale(0.0) translateY(-6px); opacity: 0; }
+	45% { transform: scale(1.18) translateY(-2px); opacity: 1; }
+	70% { transform: scale(0.95) translateY(0); }
+	100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Stronger invalid-input feedback (shake) for alphanumeric rejection */
+.invalid{color:var(--danger);font-weight:600;animation:shake 420ms cubic-bezier(.36,.07,.19,.97)}
+@keyframes shake{
+	0%{transform:translateX(0)}
+ 20%{transform:translateX(-10px)}
+ 40%{transform:translateX(10px)}
+ 60%{transform:translateX(-6px)}
+ 80%{transform:translateX(6px)}
+ 100%{transform:translateX(0)}
+}
+
+/* volume slider removed */
+
+/* sound-synced UI pulse */
+
+:root{
+	--pulse-scale: 1.06;
+	--pulse-shadow: 0 8px 24px rgba(10,80,200,0.12);
+	--pulse-duration: 360ms;
+}
+.sound-pulse{animation:uiPulse var(--pulse-duration) cubic-bezier(.2,.9,.2,1);}
+@keyframes uiPulse{
+	0%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(0,0,0,0));}
+	40%{transform:scale(var(--pulse-scale));filter:drop-shadow(var(--pulse-shadow));}
+	100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(0,0,0,0));}
+}
+
+/* target-specific helpers */
+.score-value.sound-pulse{color:var(--accent);font-weight:800;}
+.card.sound-pulse{transform-origin:center;}
+.celebrate-text.sound-pulse{transform-origin:center;display:inline-block}
+
+/* SVG confetti small pieces */
+.confetti-svg{width:100%;height:120px;overflow:visible}
+.confetti-piece{opacity:0;transform-origin:center;transition:transform 700ms cubic-bezier(.2,.8,.2,1),opacity 700ms}
+.confetti-svg.animate .confetti-piece{opacity:1}
+.confetti-piece.p1{transform:translateY(-20px) rotate(10deg)}
+.confetti-piece.p2{transform:translateY(-24px) rotate(-8deg)}
+.confetti-piece.p3{transform:translateY(-18px) rotate(18deg)}
+.confetti-piece.p4{transform:translateY(-22px) rotate(-18deg)}
+.confetti-piece.p5{transform:translateY(-26px) rotate(6deg)}
+
+/* trophy micro-animation */
+.celebrate-text .trophy{display:inline-block;transform-origin:center;animation:popTrophy 900ms cubic-bezier(.2,.8,.2,1)}
+@keyframes popTrophy{0%{transform:scale(.6) rotate(-10deg);opacity:0}40%{transform:scale(1.25) rotate(8deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+
+/* highlight current player row more */
+.lb-item.me{position:relative;box-shadow:0 6px 20px rgba(6,40,110,0.08);transform:translateY(-2px);transition:transform .24s ease,box-shadow .24s ease}
+.lb-item.me .lb-name::before{content:'🏆';margin-right:8px}
+
+/* small responsive tweaks */
+@media (max-width:600px){
+	.opts{grid-template-columns:1fr}
+	.app{margin:12px;padding:0 12px}
+}
+
+/* Compact layout for small laptops (13"/14") */
+@media (max-width:1440px) and (min-width:1024px){
+	html, body { font-size:12px; }
+	.app{max-width:720px;padding:0 12px;margin:12px auto}
+	.card, .result-root{padding:10px}
+	.opts li{padding:8px 6px;font-size:12px}
+	.lb-item{padding:8px;gap:8px}
+	.lb-rank{width:32px;height:32px}
+	.app-header h1{font-size:1rem}
+	.progress{height:6px}
+}
+
+@media (max-width:1366px) and (min-width:1024px){
+	/* slightly more aggressive on common small-laptop width */
+	html, body { font-size:12px; }
+	.app{max-width:700px}
+	.opts{gap:6px}
+	.actions{gap:6px;margin-top:8px}
+}
+
+/* Switch toggle styles */
+.switch{position:relative;display:inline-block;width:36px;height:18px}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#dbeafe;border-radius:34px;transition:.22s}
+.slider:before{content:'';position:absolute;height:12px;width:12px;left:3px;top:3px;background:white;border-radius:50%;transition:.22s}
+.switch input:checked + .slider{background:linear-gradient(90deg,var(--accent),var(--primary))}
+.switch input:checked + .slider:before{transform:translateX(18px)}
+
+/* Confetti */
+.celebrate{position:relative;overflow:visible;margin-bottom:8px}
+.confetti{position:absolute;left:0;right:0;top:-10px;height:120px;pointer-events:none}
+.confetti:before,.confetti:after{content:'';position:absolute;left:50%;top:10px;width:8px;height:8px;border-radius:2px;background:var(--accent);box-shadow:0 24px 0 var(--primary), -20px 32px 0 var(--success), 20px 48px 0 var(--danger), -40px 56px 0 #f59e0b}
+.celebrate-text{font-weight:700;color:var(--primary);margin-bottom:8px}
+
+/* Theme icons */
+.theme-toggle{display:flex;align-items:center;gap:8px}
+.theme-toggle .icon{font-size:1rem;opacity:.7}
+.theme-toggle .icon.sun{transform:translateX(-4px)}
+.theme-toggle .icon.moon{transform:translateX(4px)}
+
+.app footer{display:block;text-align:center;margin-top:0;color:var(--muted)}
+.app footer small{font-size:0.95rem}
+
+/* Fixed bottom footer */
+.site-footer{
+	/* full-bleed footer: span the entire viewport while keeping inner content centered */
+	position:relative;
+  	left:50%;
+	right:50%;
+	margin-left:-50vw;
+	margin-right:-50vw;
+	width:100vw;
+	box-sizing:border-box;
+	/* solid, non-transparent gradient so no body shows through */
+	background:linear-gradient(90deg, #ffffff, #f1f5f9);
+	border-top:1px solid rgba(11,92,255,0.08);
+	box-shadow:0 -8px 36px rgba(6,40,90,0.06);
+	backdrop-filter:blur(6px);
+	margin-top:0;
+}
+/* Confirmation modal styles */
+.confirm-overlay{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(2,6,23,0.5);display:flex;align-items:center;justify-content:center;z-index:20000}
+.confirm-modal{background:var(--card);color:var(--card-color,inherit);max-width:520px;width:92%;padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.04)}
+.confirm-modal h3{margin-top:0;margin-bottom:6px}
+.confirm-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.undo-banner{display:flex;gap:12px;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg, rgba(11,92,255,0.06), rgba(6,182,212,0.04));margin-top:12px}
+
+/* ensure modal is legible in dark theme */
+.dark .confirm-modal{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)}
+.site-footer .footer-inner{max-width:920px;margin:0 auto;padding:6px 18px;display:flex;align-items:center;gap:12px;justify-content:center}
+.site-footer .footer-logo{display:inline-flex;align-items:center}
+.site-footer .footer-text{color:var(--muted);font-size:0.95rem}
+.site-footer .footer-rights{margin-left:8px;font-weight:600;color:var(--primary)}
+.site-footer .footer-icon{margin-left:8px;display:inline-flex;align-items:center}
+
+@media (max-width:520px){
+	.site-footer .footer-inner{flex-direction:column;gap:6px;padding:12px}
+	.site-footer .footer-rights{margin-left:0}
+}
+
+/* Ensure the Angular root element is full-height and centers the app like the static container */
+html, body, app-root { height: 100%; }
+/* Align the app to the top so headers stay visible when content grows */
+app-root { display: flex; align-items: flex-start; justify-content: center; padding: 12px 0; box-sizing: border-box; min-height: 100vh; }
+/* Keep a consistent max-width like the static mode and allow the internal .app to size itself */
+app-root .app, app-root > div { width: 100%; max-width: 880px; margin: 0 auto; }
+
+/* Small screens: reduce side padding and ensure cards span full width */
+@media (max-width: 600px) {
+	app-root { padding: 8px; }
+	app-root .app, app-root > div { max-width: 100%; }
+	.card, .result-root { padding-left: 12px; padding-right: 12px; }
+}
+
+/* hide footer on very small screens */
+@media (max-width:420px){
+	.site-footer{display:none}
+}
+
+/* semi-transparent when scrolled */
+.site-footer.scrolled{background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(6,182,212,0.08));}
+.dark .site-footer.scrolled{background:linear-gradient(90deg, rgba(3,6,20,0.5), rgba(6,12,34,0.6));}
+
+/* dark theme header/footer variants */
+.dark .app-header{
+	/* slightly stronger gradient and blur so header separates from the page in dark mode */
+	background: linear-gradient(90deg, rgba(6,12,34,0.55), rgba(10,18,38,0.42));
+	border: 1px solid rgba(255,255,255,0.04);
+	/* layered shadow: deep, soft shadow + subtle bluish halo to create a floating look */
+	box-shadow: 0 10px 30px rgba(0,0,0,0.55), 0 4px 18px rgba(6,92,255,0.04);
+	backdrop-filter: blur(8px);
+	transform: translateZ(0);
+	z-index: 10;
+}
+.dark .app-header h1{color:var(--accent)}
+.dark .site-footer{
+	/* denser footer gradient and an upward shadow so it reads as lifted from the page */
+	background: linear-gradient(90deg, rgba(3,6,20,0.52), rgba(6,12,34,0.6));
+	border-top: 1px solid rgba(255,255,255,0.04);
+	box-shadow: 0 -12px 40px rgba(0,0,0,0.55), 0 -4px 18px rgba(6,92,255,0.03);
+	backdrop-filter: blur(8px);
+	transform: translateZ(0);
+	z-index: 9;
+}
+
+/* Score pop animation */
+.score-value{display:inline-block;transition:transform .18s ease,color .18s}
+.score-value.pop{transform:scale(1.18);color:var(--accent)}
+
+/* Progress pulse on change */
+.progress.pulse > i{box-shadow:0 6px 20px rgba(11,92,255,0.06);transform:scaleY(1.05)}
+
+/* Skeleton UI for loading questions */
+.skeleton{display:block;background:linear-gradient(90deg,#f3f4f6,#fff,#f3f4f6);background-size:200% 100%;animation:shimmer 1.4s linear infinite;border-radius:8px}
+.skeleton.h-20{height:20px;width:50%}
+.skeleton.h-14{height:14px;width:100%}
+.skeleton.h-40{height:40px;width:100%}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Defensive: avoid ancestor transforms or will-change that can break position:sticky.
+	 Some animations or JS may add transforms to wrappers which prevents sticky headers
+	 from behaving correctly. Force no transform on key layout ancestors. */
+app-root, app-root .app, .result-root, .card {
+	transform: none !important;
+	will-change: auto !important;
+}
+
+/* Ensure header stays sticky on all browsers */
+.app-header{position:-webkit-sticky;position:sticky;top:12px;z-index:999;}

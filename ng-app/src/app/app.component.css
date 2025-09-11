@@ -1,0 +1,12 @@
+/* basic styles for the Angular app */
+:root{--bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#6b7280}
+.app{max-width:900px;margin:32px auto;padding:18px;color:var(--text)}
+.app.dark{background:#0b1220;color:#e6eef8}
+.app-header{display:flex;justify-content:space-between;align-items:center}
+.quiz-root .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+.opts{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts li{padding:10px;border-radius:8px;border:1px solid #eef2ff;cursor:pointer}
+.opts li.selected{border-color:#06b6d4}
+.opts li.correct{background:#ecfdf5;border-color:#10b981}
+.opts li.wrong{background:#fff1f2;border-color:#ef4444}
+.result-root{background:var(--card);padding:18px;border-radius:10px;text-align:center}
