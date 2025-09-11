@@ -110,11 +110,11 @@ Check `server/package.json` or `server/index.js` for the configured port (common
 - How to expose remotely (ngrok):
 
 start the server first
-'export PORT=3000'
-'npm start'
+`export PORT=3000`
+`npm start`
 
 in a separate terminal
-'ngrok http 3000'
+`ngrok http 3000`
 
 ngrok will provide a public URL that forwards to your local server.
 
