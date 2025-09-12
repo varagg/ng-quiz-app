@@ -77,7 +77,7 @@ then open http://localhost:8000
 
 **Output (Static)**
 
-![alt text](image.png)
+![alt text](/Users/poovaragamukeshkumar/Projects/ng-quiz-app/static/image.png)
 
 ...
 
