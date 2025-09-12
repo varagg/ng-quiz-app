@@ -1,4 +1,4 @@
-# ng-quiz-app
+# ng-quiz-app 👾
 
 A lightweight quiz application built with Angular for the frontend and a minimal Node server for hosting APIs and static assets. This repository contains three pieces:
 
@@ -8,7 +8,7 @@ A lightweight quiz application built with Angular for the frontend and a minimal
 
 ---
 
-## What is this project
+## What is this project 💻
 
 ng-quiz-app is a small, opinionated quiz/demo that showcases:
 
@@ -40,7 +40,7 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 ---
 
-## Use cases
+## Use cases ⚙️
 
 - Educational demos and coding interviews  
 - Lightweight quiz/gamified experiences for small teams or classrooms  
@@ -55,7 +55,7 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 - What it is: A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
 
-**How to run locally:**  
+**⛓️‍💥 How to run locally:**  
 
 ```zsh
 # macOS: open in default browser
@@ -82,7 +82,7 @@ then open http://localhost:8000
 - What it is: the Angular source code and configuration. Use this for development or to build a production bundle.
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
 
-**How to run (development):**
+**⛓️‍💥 How to run (development):**
 
 ```zsh
 cd ng-app
@@ -92,7 +92,7 @@ npm start
 
 This runs the Angular dev server (check `package.json` scripts; `npm start` typically runs `ng serve`). Open the printed URL (usually http://localhost:4200).
 
-**How to build (production):**
+**⛓️‍💥 How to build (production):**
 
 ```zsh
 cd ng-app
@@ -109,7 +109,7 @@ The compiled output will be under `ng-app/dist/` (or as configured in `angular.j
 - What it is: the hostable Node.js server that can serve the app and provide server-side features like a leaderboard. This is the recommended folder to run when exposing the app (for example via ngrok).
 - Prerequisites: Node.js (>=14 recommended), npm.
 
-**How to run locally:**
+**⛓️‍💥 How to run locally:**
 
 ```zsh
 cd server
@@ -129,7 +129,7 @@ export PORT=3000
 npm start
 ```
 
-**How to expose remotely (ngrok):**
+**⛓️‍💥 How to expose remotely (ngrok):**
 
 ```zsh
 # start the server first
@@ -147,7 +147,7 @@ ngrok will provide a public URL that forwards to your local server.
 
 ---
 
-## Future improvements (ideas)
+## Future improvements (ideas) 💡
 
 - ESLint + Husky pre-commit linting
 - Dependabot and Scheduled dependency updates
