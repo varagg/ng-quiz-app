@@ -71,9 +71,13 @@ python3 -m http.server 8000
 ```
 then open http://localhost:8000
 
-**Notes:**
+**📝 Notes:**
 - No Node or build step required.
 - Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
+
+**Output (Static)**
+
+![alt text](image.png)
 
 ...
 
