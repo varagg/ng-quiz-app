@@ -51,7 +51,7 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 ## 👉 How to run (static / ng-app / server)
 
-1) **`static/` (quickest - no install)**
+1) **👨🏻‍💻 `static/` (quickest - no install)**
 
 - What it is: A client-only implementation using plain HTML, CSS and JavaScript. Good for quick demos and understanding app flow.  
 
@@ -77,7 +77,7 @@ then open http://localhost:8000
 
 ...
 
-2) **`ng-app/` (development - Angular source)**
+2) **👨🏻‍💻 `ng-app/` (development - Angular source)**
 
 - What it is: the Angular source code and configuration. Use this for development or to build a production bundle.
 - Prerequisites: Node.js (>=14 recommended), npm or yarn, Angular CLI (optional but helpful).
@@ -104,7 +104,7 @@ The compiled output will be under `ng-app/dist/` (or as configured in `angular.j
 
 ...
 
-3) **`server/` (hostable / upgraded version)**
+3) **👨🏻‍💻 `server/` (hostable / upgraded version)**
 
 - What it is: the hostable Node.js server that can serve the app and provide server-side features like a leaderboard. This is the recommended folder to run when exposing the app (for example via ngrok).
 - Prerequisites: Node.js (>=14 recommended), npm.
