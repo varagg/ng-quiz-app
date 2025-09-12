@@ -8,7 +8,7 @@ A lightweight quiz application built with Angular for the frontend and a minimal
 
 ---
 
-## What is this project 💻
+## 👉 What is this project
 
 ng-quiz-app is a small, opinionated quiz/demo that showcases:
 
@@ -21,7 +21,7 @@ It's a good starter project to demonstrate Angular skills to reviewers and to ex
 
 ---
 
-## The three quiz phases
+## 👉 The three quiz phases
 
 The quiz is split into three intuitive phases that map to the user flow:
 
@@ -49,7 +49,7 @@ The quiz is split into three intuitive phases that map to the user flow:
 
 ---
 
-## How to run (static / ng-app / server)
+## 👉 How to run (static / ng-app / server)
 
 1) **`static/` (quickest - no install)**
 
@@ -147,7 +147,7 @@ ngrok will provide a public URL that forwards to your local server.
 
 ---
 
-## Future improvements (ideas) 💡
+## 💡 Future improvements (ideas)
 
 - ESLint + Husky pre-commit linting
 - Dependabot and Scheduled dependency updates
