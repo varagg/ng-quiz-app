@@ -75,9 +75,8 @@ then open http://localhost:8000
 - No Node or build step required.
 - Use the simple server if the app fetches `assets/questions.json` to avoid CORS/file access issues.
 
-**Output (Static)**
-
-![alt text](/Users/poovaragamukeshkumar/Projects/ng-quiz-app/static/image.png)
+### Output — static/
+![Static phase screenshot](assets/screenshots/static-phase.png)
 
 ...
 
@@ -105,6 +104,9 @@ npm run build ----prod
 ```
 
 The compiled output will be under `ng-app/dist/` (or as configured in `angular.json`). You can then serve the built files with any static server.
+
+### Output — ng-app/
+![Angular dev screenshot](assets/screenshots/ng-app-phase.png)
 
 ...
 
@@ -148,6 +150,9 @@ ngrok http 3000
 ```
 
 ngrok will provide a public URL that forwards to your local server.
+
+### Output — server/
+![Server demo screenshot](assets/screenshots/server-phase.png)
 
 ---
 
